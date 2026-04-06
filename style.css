@@ -169,14 +169,32 @@ header h1{font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-.3px}
 .card-ball-btn.owned .ball-icon::before{background:#222}
 .card-ball-btn.owned .ball-icon::after{background:#fff;border-color:#222}
 
-/* ── Card area wrap + pin icon ── */
-.card-area-wrap{display:flex;align-items:center;gap:4px;margin-top:6px}
-.pin-icon{width:13px;height:13px;flex-shrink:0;opacity:.55;color:var(--text2);transition:opacity .15s}
-.poke-card:hover .pin-icon{opacity:.85}
+/* ── Card area wrap ── */
+.card-area-wrap{display:flex;align-items:center;gap:5px;margin-top:6px}
+
+/* 已製作按鈕 */
+.card-craft-btn{
+  flex-shrink:0;width:22px;height:22px;border-radius:4px;
+  border:1.5px solid var(--border);background:var(--bg3);
+  color:var(--text3);font-size:.75rem;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .15s;
+}
+.card-craft-btn:hover:not(.crafted){border-color:var(--green);color:var(--green)}
+.card-craft-btn.crafted{background:var(--green);border-color:var(--green);color:#fff}
+
+/* Select + pin wrapper */
+.card-area-sel-wrap{position:relative;flex:1;max-width:88px}
+.card-pin{
+  position:absolute;left:6px;top:50%;transform:translateY(-50%);
+  width:11px;height:11px;pointer-events:none;z-index:1;
+  display:none;
+}
+.card-pin.show{display:block}
 
 /* ── Card area select ── */
 .card-area-select{
-  flex:1;
+  width:100%;
   background:var(--bg3);border:1.5px solid var(--border);
   color:var(--text2);border-radius:7px;padding:4px 6px;
   font-size:.72rem;cursor:pointer;outline:none;
@@ -186,9 +204,8 @@ header h1{font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-.3px}
 .card-area-select:focus{border-color:var(--accent)}
 .card-area-select.has-value{
   appearance:none;-webkit-appearance:none;
-  border-radius:12px;font-weight:700;font-size:.7rem;
-  text-align:center;background:transparent;
-  padding:3px 10px;cursor:pointer;
+  border-radius:12px;font-weight:700;
+  background:transparent;padding:3px 6px 3px 20px;cursor:pointer;
 }
 
 /* Area tag on card */
@@ -237,6 +254,9 @@ header h1{font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-.3px}
 .btn-owned{padding:6px 18px;border-radius:20px;border:2px solid var(--border);background:transparent;color:var(--text2);font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s}
 .btn-owned.owned{background:var(--green);border-color:var(--green);color:#fff}
 .btn-owned:hover:not(.owned){border-color:var(--green);color:var(--green)}
+.btn-crafted{padding:6px 18px;border-radius:20px;border:2px solid var(--border);background:transparent;color:var(--text2);font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-crafted.crafted{background:#7c3aed;border-color:#7c3aed;color:#fff}
+.btn-crafted:hover:not(.crafted){border-color:#7c3aed;color:#7c3aed}
 
 .area-select{background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:6px 10px;font-size:.8rem;cursor:pointer;outline:none;transition:border-color .2s}
 .area-select:focus{border-color:var(--accent)}

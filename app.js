@@ -92,11 +92,13 @@ const AF = {
   weather:new Set(), env:new Set(), obtain:new Set(),
   area:new Set(), search:''
 };
-let ownedSet  = new Set(JSON.parse(localStorage.getItem('owned')  || '[]'));
-let areaMap   = JSON.parse(localStorage.getItem('areaMap')   || '{}'); // id → areaId
+let ownedSet   = new Set(JSON.parse(localStorage.getItem('owned')    || '[]'));
+let craftedSet = new Set(JSON.parse(localStorage.getItem('crafted')  || '[]'));
+let areaMap    = JSON.parse(localStorage.getItem('areaMap') || '{}'); // id → areaId
 
-function saveOwned()  { localStorage.setItem('owned',  JSON.stringify([...ownedSet])); }
-function saveAreaMap(){ localStorage.setItem('areaMap', JSON.stringify(areaMap)); }
+function saveOwned()   { localStorage.setItem('owned',   JSON.stringify([...ownedSet])); }
+function saveCrafted() { localStorage.setItem('crafted', JSON.stringify([...craftedSet])); }
+function saveAreaMap() { localStorage.setItem('areaMap', JSON.stringify(areaMap)); }
 
 // ── Init ────────────────────────────────────────────────────
 async function init() {
@@ -264,9 +266,10 @@ function idStr(p) {
 }
 
 function renderCard(p) {
-  const pk    = p.pokopia || {};
-  const owned = ownedSet.has(p.id);
-  const area  = areaMap[p.id] || '';
+  const pk      = p.pokopia || {};
+  const owned   = ownedSet.has(p.id);
+  const crafted = craftedSet.has(p.id);
+  const area    = areaMap[p.id] || '';
   const areaInfo = area ? AREAS.find(a=>a.id===area) : null;
 
   const typeIcons = (p.types||[]).map(t =>
@@ -319,13 +322,17 @@ function renderCard(p) {
       <div class="card-icons">${specIcons}${timeIcons}${weatherIcons}${envIcon}</div>
       ${habThumbs ? `<div class="card-habitats">${habThumbs}</div>` : ''}
 
-      <!-- 區域下拉 -->
+      <!-- 區域 + 已製作 -->
       <div class="card-area-wrap" onclick="event.stopPropagation()">
-        <svg class="pin-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        <select class="card-area-select${areaInfo?' has-value':''}" onchange="cardSetArea(${p.id},this)"
-          style="${areaInfo ? `border-color:${areaInfo.color};color:${areaInfo.color}` : ''}">
-          ${areaOptions}
-        </select>
+        <button class="card-craft-btn${crafted?' crafted':''}" title="${crafted?'取消已製作':'標記已製作'}"
+          onclick="cardToggleCrafted(${p.id},this)">✓</button>
+        <div class="card-area-sel-wrap">
+          <svg class="card-pin${areaInfo?' show':''}" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <select class="card-area-select${areaInfo?' has-value':''}" onchange="cardSetArea(${p.id},this)"
+            style="${areaInfo ? `border-color:${areaInfo.color};color:${areaInfo.color}` : ''}">
+            ${areaOptions}
+          </select>
+        </div>
       </div>
     </div>`;
 }
@@ -434,7 +441,8 @@ function closeModal(e) {
 
 function buildDetail(p) {
   const pk    = p.pokopia || {};
-  const owned = ownedSet.has(p.id);
+  const owned   = ownedSet.has(p.id);
+  const crafted = craftedSet.has(p.id);
   const curArea = areaMap[p.id] || '';
 
   // Types
@@ -505,6 +513,9 @@ function buildDetail(p) {
       <div class="detail-controls">
         <button class="btn-owned${owned?' owned':''}" onclick="toggleOwned(${p.id},this)">
           ${owned ? '✓ 已捕獲' : '＋ 標記捕獲'}
+        </button>
+        <button class="btn-crafted${crafted?' crafted':''}" onclick="toggleCrafted(${p.id},this)">
+          ${crafted ? '✓ 已製作' : '✓ 標記製作'}
         </button>
         <select class="area-select" onchange="setArea(${p.id},this.value)" style="${curArea ? `border-color:${AREAS.find(a=>a.id===curArea)?.color};color:${AREAS.find(a=>a.id===curArea)?.color}` : ''}">
           ${areaOptions}
@@ -597,6 +608,35 @@ function cardSetArea(id, select) {
   setArea(id, select.value);
 }
 
+function cardToggleCrafted(id, btn) {
+  if (craftedSet.has(id)) { craftedSet.delete(id); } else { craftedSet.add(id); }
+  saveCrafted();
+  const isCrafted = craftedSet.has(id);
+  btn.classList.toggle('crafted', isCrafted);
+  btn.title = isCrafted ? '取消已製作' : '標記已製作';
+  // Sync modal if open
+  const modalBtn = document.querySelector('.btn-crafted');
+  if (modalBtn && document.getElementById('modal').classList.contains('open')) {
+    modalBtn.classList.toggle('crafted', isCrafted);
+    modalBtn.textContent = isCrafted ? '✓ 已製作' : '✓ 標記製作';
+  }
+}
+
+function toggleCrafted(id, btn) {
+  if (craftedSet.has(id)) { craftedSet.delete(id); btn.textContent='✓ 標記製作'; btn.classList.remove('crafted'); }
+  else                    { craftedSet.add(id);    btn.textContent='✓ 已製作';   btn.classList.add('crafted'); }
+  saveCrafted();
+  // Sync card button
+  const card = document.querySelector(`.poke-card[data-id="${id}"]`);
+  if (card) {
+    const cardBtn = card.querySelector('.card-craft-btn');
+    if (cardBtn) {
+      cardBtn.classList.toggle('crafted', craftedSet.has(id));
+      cardBtn.title = craftedSet.has(id) ? '取消已製作' : '標記已製作';
+    }
+  }
+}
+
 // ── Owned ────────────────────────────────────────────────────
 function toggleOwned(id, btn) {
   if (ownedSet.has(id)) {
@@ -649,14 +689,17 @@ function setArea(id, areaId) {
 }
 
 function applyAreaSelectStyle(sel, areaInfo) {
+  const pin = sel.parentNode?.querySelector('.card-pin');
   if (areaInfo) {
     sel.style.borderColor = areaInfo.color;
     sel.style.color = areaInfo.color;
     sel.classList.add('has-value');
+    if (pin) pin.classList.add('show');
   } else {
     sel.style.borderColor = '';
     sel.style.color = '';
     sel.classList.remove('has-value');
+    if (pin) pin.classList.remove('show');
   }
 }
 
