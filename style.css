@@ -262,6 +262,7 @@ header h1{font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-.3px}
 .habitat-card .hab-name{font-size:.75rem;font-weight:700;margin-bottom:2px}
 .habitat-card .hab-materials{font-size:.65rem;color:var(--text2);line-height:1.4;display:flex;flex-wrap:wrap;gap:3px}
 .habitat-card .hab-materials-text{font-size:.62rem;color:var(--text3);line-height:1.4;margin-bottom:2px}
+.hab-area-badge{display:inline-flex;align-items:center;font-size:.6rem;font-weight:700;padding:1px 7px;border-radius:10px;border:1px solid;margin-bottom:3px;white-space:nowrap}
 .mat-item{display:inline-flex;align-items:center;gap:3px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:2px 5px;font-size:.68rem;color:var(--text2);white-space:nowrap}
 .mat-item img{width:18px;height:18px;object-fit:contain;flex-shrink:0}
 .hab-modal-materials{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}

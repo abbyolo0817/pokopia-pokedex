@@ -157,7 +157,8 @@
           "id": 46,
           "name": "庭園露台",
           "rarity": "rare",
-          "materials": "原野花 x4, 庭園椅 x1, 庭園燈 x1, 庭園桌 x1"
+          "materials": "原野花 x4, 庭園椅 x1, 庭園燈 x1, 庭園桌 x1",
+          "area": "withered-wasteland"
         }
       ]
     },
@@ -1937,7 +1938,8 @@
           "id": 63,
           "name": "垃圾集中處",
           "rarity": "common",
-          "materials": "垃圾桶（任意）x1, 看板（任意）x1, 垃圾袋 x1"
+          "materials": "垃圾桶（任意）x1, 看板（任意）x1, 垃圾袋 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -1983,13 +1985,15 @@
           "id": 48,
           "name": "美好的古董",
           "rarity": "common",
-          "materials": "古董衣櫃 x1, 古董床 x1, 古董梳妝台 x1, 古董椅 x1"
+          "materials": "古董衣櫃 x1, 古董床 x1, 古董梳妝台 x1, 古董椅 x1",
+          "area": "palette-town"
         },
         {
           "id": 63,
           "name": "垃圾集中處",
           "rarity": "rare",
-          "materials": "垃圾桶（任意）x1, 看板（任意）x1, 垃圾袋 x1"
+          "materials": "垃圾桶（任意）x1, 看板（任意）x1, 垃圾袋 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -2038,7 +2042,8 @@
           "id": 49,
           "name": "滿滿的精靈球",
           "rarity": "common",
-          "materials": "精靈球沙發 x1, 精靈球床 x1, 精靈球桌 x1, 精靈球燈 x1"
+          "materials": "精靈球沙發 x1, 精靈球床 x1, 精靈球桌 x1, 精靈球燈 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -5346,7 +5351,8 @@
           "id": 47,
           "name": "樹蔭下酣睡的卡比獸",
           "rarity": "common",
-          "materials": "大樹（任意）x1, 午睡床 x1"
+          "materials": "大樹（任意）x1, 午睡床 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -5393,13 +5399,15 @@
           "id": 47,
           "name": "樹蔭下酣睡的卡比獸",
           "rarity": "rare",
-          "materials": "大樹（任意）x1, 午睡床 x1"
+          "materials": "大樹（任意）x1, 午睡床 x1",
+          "area": "palette-town"
         },
         {
           "id": 48,
           "name": "美好的古董",
           "rarity": "common",
-          "materials": "古董衣櫃 x1, 古董床 x1, 古董梳妝台 x1, 古董椅 x1"
+          "materials": "古董衣櫃 x1, 古董床 x1, 古董梳妝台 x1, 古董椅 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -6628,7 +6636,8 @@
           "id": 63,
           "name": "垃圾集中處",
           "rarity": "common",
-          "materials": "垃圾桶（任意）x1, 看板（任意）x1, 垃圾袋 x1"
+          "materials": "垃圾桶（任意）x1, 看板（任意）x1, 垃圾袋 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -6675,7 +6684,8 @@
           "id": 63,
           "name": "垃圾集中處",
           "rarity": "rare",
-          "materials": "垃圾桶（任意）x1, 看板（任意）x1, 垃圾袋 x1"
+          "materials": "垃圾桶（任意）x1, 看板（任意）x1, 垃圾袋 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -9838,7 +9848,8 @@
           "id": 124,
           "name": "悠閒回顧相簿",
           "rarity": "common",
-          "materials": "平板電腦 x1, 派對杯 x1"
+          "materials": "平板電腦 x1, 派對杯 x1",
+          "area": "rocky-ridges"
         }
       ]
     },
@@ -12428,7 +12439,8 @@
           "id": 165,
           "name": "遊樂場",
           "rarity": "common",
-          "materials": "溜滑梯 x1, 玩具（任意）x1"
+          "materials": "溜滑梯 x1, 玩具（任意）x1",
+          "area": "sparkling-skylands"
         }
       ]
     },
@@ -14070,7 +14082,8 @@
           "id": 202,
           "name": "繽紛藍色",
           "rarity": "common",
-          "materials": "椅子（任意）x1, 桌子（任意）x1, 冰淇淋蘇打 x1"
+          "materials": "椅子（任意）x1, 桌子（任意）x1, 冰淇淋蘇打 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -14116,7 +14129,8 @@
           "id": 203,
           "name": "電擊薯條",
           "rarity": "common",
-          "materials": "椅子（任意）x1, 桌子（任意）x1, 薯條 x1"
+          "materials": "椅子（任意）x1, 桌子（任意）x1, 薯條 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -14162,7 +14176,8 @@
           "id": 204,
           "name": "火辣辣辛辣",
           "rarity": "common",
-          "materials": "椅子（任意）x1, 桌子（任意）x1, 披薩 x1"
+          "materials": "椅子（任意）x1, 桌子（任意）x1, 披薩 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -14207,7 +14222,8 @@
           "id": 205,
           "name": "優雅午後",
           "rarity": "common",
-          "materials": "椅子（任意）x1, 桌子（任意）x1, 下午茶套組 x1"
+          "materials": "椅子（任意）x1, 桌子（任意）x1, 下午茶套組 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -14250,7 +14266,8 @@
           "id": 206,
           "name": "黑色風味",
           "rarity": "common",
-          "materials": "椅子（任意）x1, 桌子（任意）x1, 巧克力餅乾 x1"
+          "materials": "椅子（任意）x1, 桌子（任意）x1, 巧克力餅乾 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -14296,7 +14313,8 @@
           "id": 207,
           "name": "綠色三明治",
           "rarity": "common",
-          "materials": "椅子（任意）x1, 桌子（任意）x1, 三明治 x1"
+          "materials": "椅子（任意）x1, 桌子（任意）x1, 三明治 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -14342,7 +14360,8 @@
           "id": 208,
           "name": "冰涼刨冰",
           "rarity": "common",
-          "materials": "椅子（任意）x1, 桌子（任意）x1, 刨冰 x1"
+          "materials": "椅子（任意）x1, 桌子（任意）x1, 刨冰 x1",
+          "area": "palette-town"
         }
       ]
     },
@@ -14388,7 +14407,8 @@
           "id": 209,
           "name": "可愛蛋糕",
           "rarity": "common",
-          "materials": "椅子（任意）x1, 桌子（任意）x1, 緞帶蛋糕 x1"
+          "materials": "椅子（任意）x1, 桌子（任意）x1, 緞帶蛋糕 x1",
+          "area": "palette-town"
         }
       ]
     },

@@ -464,16 +464,20 @@ function buildDetail(p) {
     : '–';
 
   // Habitats
-  const habCards = (pk.habitats||[]).map(h => `
+  const habCards = (pk.habitats||[]).map(h => {
+    const areaInfo = h.area ? AREAS.find(a=>a.id===h.area) : null;
+    return `
     <div class="habitat-card clickable-hab" onclick="openHabitatModal(${h.id})">
       <div class="rarity-bar ${h.rarity}"></div>
       <img src="images/habitats/habitat_${h.id}.png" alt="${h.name}" loading="lazy" onerror="this.style.background='#1e2235';this.style.height='70px'">
       <div class="hab-info">
         <div class="hab-name">${h.name}</div>
+        ${areaInfo ? `<div class="hab-area-badge" style="background:${areaInfo.color}20;color:${areaInfo.color};border-color:${areaInfo.color}40">僅限 ${areaInfo.label}</div>` : ''}
         ${h.materials ? `<div class="hab-materials-text">${h.materials}</div>` : ''}
         <div style="font-size:.6rem;color:var(--text3);margin-top:2px">${T.rarity[h.rarity]||h.rarity}</div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
   // Favorites
   const favs = (pk.favorites||[]).map(f =>
@@ -718,7 +722,7 @@ function buildHabitatLookup() {
     const pk = p.pokopia || {};
     for (const h of (pk.habitats || [])) {
       if (!lookup[h.id]) {
-        lookup[h.id] = { id: h.id, name: h.name, materials: h.materials, pokemon: [] };
+        lookup[h.id] = { id: h.id, name: h.name, materials: h.materials, area: h.area||null, pokemon: [] };
       }
       lookup[h.id].pokemon.push({ ...p, rarity: h.rarity });
     }
@@ -744,6 +748,7 @@ function closeHabitatModal(e) {
 
 function buildHabitatDetail(hab) {
   const rarityOrder = { 'very-rare': 0, rare: 1, common: 2 };
+  const habAreaInfo = hab.area ? AREAS.find(a=>a.id===hab.area) : null;
   const sorted = [...hab.pokemon].sort((a, b) =>
     (rarityOrder[a.rarity] ?? 3) - (rarityOrder[b.rarity] ?? 3)
   );
@@ -775,6 +780,7 @@ function buildHabitatDetail(hab) {
       <img class="hab-modal-img" src="images/habitats/habitat_${hab.id}.png" alt="${hab.name}" onerror="this.style.display='none'">
       <div class="hab-modal-info">
         <div class="hab-modal-name">${hab.name}</div>
+        ${habAreaInfo ? `<div class="hab-area-badge" style="display:inline-flex;background:${habAreaInfo.color}20;color:${habAreaInfo.color};border-color:${habAreaInfo.color}40;margin-bottom:6px">僅限 ${habAreaInfo.label}</div>` : ''}
         ${hab.materials ? `<div class="hab-modal-materials">${renderMaterials(hab.materials)}</div>` : ''}
         <div class="hab-modal-count">${hab.pokemon.length} 種寶可夢</div>
       </div>
